@@ -1,15 +1,20 @@
-const Modal =({note})=>{
-    return   <div className="modal">
+const Modal =({active, inactive,data,nots,isData,note,isNote,title,isTitle})=>{
+
+
+
+    return  <>{active?null : <div className="modal">
     <div className="modal-content">
       <div className="form-container">
         <form>
-          <input type="text" className="note-title" placeholder="Title" defaultValue={note.title} />
-          <input
-            className="note-text"
-            type="text"
-            placeholder="Take a note..."
-            defaultValue={note.note}
-          />
+        <input type="text" className="note-title" placeholder="Title" defaultValue={nots.title} value={title}/>
+        <input
+          id="note-text"
+          className="note-text"
+          type="text"
+          placeholder="Take a note..."
+          defaultValue={nots.note}
+          value={note}
+        />
           <div className="form-actions" style={{    display: "flex",
     justifyContent: "space-between",
     margin: "10px"}}>
@@ -68,7 +73,7 @@ const Modal =({note})=>{
         </form>
       </div>
     </div>
-  </div>
+  </div>}</>
 }
 
 export default Modal;

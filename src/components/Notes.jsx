@@ -1,15 +1,15 @@
 import Note from "./Note";
 import Modal from "./Modal";
 
-const Notes =({data})=>{
+const Notes =({data,isTitle,isNote,isData,inactive})=>{
 
 
 
-const submittedNotes = data.map((note)=>{
-    return <>
-    <Note key={note.id} note={note}/>
+const submittedNotes = data.map((note,id)=>{
+    return <div key={id}>
+    <Note  nots={note} data={data} isTitle={isTitle} isNote={isNote} isData={isData} inactive={inactive}/>
     
-    </>
+    </div>
 })
 
     return <div className="notes" style={{ width:"calc(100vw - 190px)",marginLeft:"170px"}}>

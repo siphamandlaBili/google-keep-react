@@ -2,8 +2,8 @@ import { useState } from 'react';
 // import data from "../data"
 
 
-const FormInactive = ({data,isData}) => {
-  const [active, inactive] = useState(true);
+const FormInactive = ({active, inactive,data,isData,note,isNote,title,isTitle}) => {
+  // const [active, inactive] = useState(true);
  
   const toggleForm = ()=>{
      inactive(false);
@@ -14,8 +14,7 @@ const FormInactive = ({data,isData}) => {
      inactive(true)
   }
 
-  const [title,isTitle] = useState("");
-  const [note,isNote] = useState("");
+
   
   const addtitle = (e)=>{
   isTitle(e.target.value);
@@ -26,17 +25,37 @@ const FormInactive = ({data,isData}) => {
   }
   
   const logNote = (e)=>{
-    e.preventDefault()
+    e.preventDefault();
+    if(title !=="" && note !==""){
     const singleNoteAdd = {id:data.length + 1,title,note};
     isTitle("");
     isNote('');
     isData([...data,singleNoteAdd]);
-    console.log(data)
+    inactive(true)
+    }
+
+    if(title =="" && note !==""){
+    const singleNoteAdd = {id:data.length + 1,title,note};
+    isTitle("");
+    isNote('');
+    isData([...data,singleNoteAdd]);
+    inactive(true)
+    }
+
+    if(title !=="" && note ==""){
+      isTitle("");
+      isNote('');
+      alert("provide note")
+      }
+
+      if(title =="" && note ==""){
+        inactive(true)
+        }
   }
 
   return <> {active ? <div className="form-container inactive-form" >
     <form style={{display:"flex"}} onClick={toggleForm}>
-      <input className="note-text" type="text" placeholder="Take a note..." />
+      <input className="note-text" type="text" placeholder="Take a note..." defaultValue=""/>
       <div className="form-actions">
         <div className="tooltip">
           <span className="material-icons hover">check_box</span>

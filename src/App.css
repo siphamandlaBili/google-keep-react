@@ -11,7 +11,7 @@
 
 
 /* HOVER EFFECTS  */
-.material-symbols-outlined {
+.material-icons {
   padding: 10px;
 }
 
@@ -147,7 +147,7 @@ input:focus {
   width: 250px;
 }
 
-.sidebar-item  .material-symbols-outlined {
+.sidebar-item  .material-icons {
     margin-left: 10px;
 }
 
@@ -283,15 +283,22 @@ input:focus {
   margin-top: 15px;
   display: flex;
   padding: 0;
-  justify-content: center;
+  /* justify-content: center; */
   visibility: hidden;
 }
 
-.note-footer .material-symbols-outlined {
+.note-footer .material-icons {
   color: #5f6368;
   font-size: .9rem;
 }
 
+.note-footer #delete:hover{
+  color: red;
+}
+
+.note-footer #edit:hover{
+  color: rgb(13, 0, 255);
+}
 .note .check-circle {
   position: absolute;
   top: -20px;

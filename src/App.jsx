@@ -13,13 +13,16 @@ import { useState } from 'react';
 
 function App() {
  const [data,isData] = useState(notes)
+ const [title,isTitle] = useState("");
+ const [note,isNote] = useState("");
+ const [active, inactive] = useState(true);
   return (
     <>
       <Navbar/>
       <Sidebar />
         <main style={{paddingTop:"60px"}}>
-        <FormInactive data={data} isData={isData}/>
-        <Notes data={data}/>
+        <FormInactive data={data} isData={isData} title={title} isTitle={isTitle} note={note} isNote={isNote}  active={active} inactive={inactive}/>
+        <Notes data={data} isData={isData} title={title} isTitle={isTitle} note={note} isNote={isNote} active={active} inactive={inactive} />
         </main>
         {/* <Modal/> */}
      

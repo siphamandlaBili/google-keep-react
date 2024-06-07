@@ -1,45 +1,54 @@
 import Modal from "./Modal";
 import { useState } from "react";
-const Note = ({note}) =>{
-    const [clickedNote,isClickedNote] = useState(false);
+const Note = ({ nots, data, title, isTitle, isNote, isData, inactive }) => {
+    const [clickedNote, isClickedNote] = useState(false);
+    const [selected, setSelected] = useState(null);
 
-    const viewModal = ()=>{
+    const viewModal = () => {
         isClickedNote(true)
-        console.log(note.title)
     }
 
-    return <div className="note" onClick={viewModal} >
-    <span className="material-icons check-circle">check_circle</span>
-    <div className="title">{note.title}</div>
-    <div className="text">{note.note}</div>
-    <div className="note-footer">
-        <div className="tooltip">
+    const removeItem = (id) => {
+        const newPeople = data.filter((note) => {
+            return note.id !== id
+        })
+        isData(newPeople)
+    }
+
+
+    return <div className="note" >
+        <div onClick={viewModal} >
+        <div className="title">{nots.title == "" ? <p style={{ color: "red" }}>no title</p> : nots.title}</div>
+        <div className="text">{nots.note}</div>
+        </div>
+        <div className="note-footer">
+            {/* <div className="tooltip">
             <span className="material-icons hover small-icon">add_alert</span>
             <span className="tooltip-text">Remind me</span>
-        </div>
-        <div className="tooltip">
+        </div> */}
+            {/* <div className="tooltip">
             <span className="material-icons hover small-icon">person_add</span>
             <span className="tooltip-text">Collaborator</span>
-        </div>
-        <div className="tooltip">
+        </div> */}
+            {/* <div className="tooltip">
             <span className="material-icons hover small-icon">palette</span>
             <span className="tooltip-text">Change Color</span>
-        </div>
-        <div className="tooltip">
+        </div> */}
+            {/* <div className="tooltip">
             <span className="material-icons hover small-icon">image</span>
             <span className="tooltip-text">Add Image</span>
+        </div> */}
+            <div className="tooltip archive">
+                <span className="material-icons hover small-icon" id="delete" onClick={() => { removeItem(nots.id) }} >delete</span>
+                <span className="tooltip-text" >delete</span>
+            </div>
+            <div className="tooltip">
+                <span className="material-icons hover  small-icon" id="edit" onClick={viewModal} >edit</span>
+                <span className="tooltip-text">edit</span>
+            </div>
         </div>
-        <div className="tooltip archive">
-            <span className="material-icons hover small-icon">archive</span>
-            <span className="tooltip-text">Archive</span>
-        </div>
-        <div className="tooltip">
-            <span className="material-icons hover small-icon">more_vert</span>
-            <span className="tooltip-text">More</span>
-        </div>
+        {clickedNote ? <Modal nots={nots} data={data} isTitle={isTitle} isNote={isNote} isData={isData} inactive={inactive} /> : null}
     </div>
-    {clickedNote ? <Modal note={note} /> : null }
-</div>
 }
 
 export default Note;
