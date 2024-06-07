@@ -1,4 +1,9 @@
+
+
 const Navbar =()=>{
+    const appRefresh =()=>{
+              window.location.reload();
+    }
     return  <nav>
     <div className="logo-area">
       <div className="tooltip">
@@ -25,8 +30,8 @@ const Navbar =()=>{
     </div>
     <div className="settings-area">
       <div className="tooltip">
-        <span className="material-icons hover">refresh</span>
-        <span className="tooltip-text">Refresh</span>
+        <span className="material-icons hover" onClick={appRefresh}>refresh</span>
+        <span className="tooltip-text" >Refresh</span>
       </div>
       <div className="tooltip">
         <span className="material-icons hover">view_agenda</span>

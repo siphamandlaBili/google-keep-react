@@ -1,6 +1,14 @@
+import Modal from "./Modal";
+import { useState } from "react";
 const Note = ({note}) =>{
-    
-    return <div className="note">
+    const [clickedNote,isClickedNote] = useState(false);
+
+    const viewModal = ()=>{
+        isClickedNote(true)
+        console.log(note.title)
+    }
+
+    return <div className="note" onClick={viewModal} >
     <span className="material-icons check-circle">check_circle</span>
     <div className="title">{note.title}</div>
     <div className="text">{note.note}</div>
@@ -30,6 +38,7 @@ const Note = ({note}) =>{
             <span className="tooltip-text">More</span>
         </div>
     </div>
+    {clickedNote ? <Modal note={note} /> : null }
 </div>
 }
 

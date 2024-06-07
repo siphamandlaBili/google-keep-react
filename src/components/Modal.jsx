@@ -1,13 +1,14 @@
-const Modal =()=>{
+const Modal =({note})=>{
     return   <div className="modal">
     <div className="modal-content">
       <div className="form-container">
         <form>
-          <input type="text" className="note-title" placeholder="Title" />
+          <input type="text" className="note-title" placeholder="Title" defaultValue={note.title} />
           <input
             className="note-text"
             type="text"
             placeholder="Take a note..."
+            defaultValue={note.note}
           />
           <div className="form-actions" style={{    display: "flex",
     justifyContent: "space-between",

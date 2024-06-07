@@ -1,8 +1,10 @@
 import { useState } from 'react';
+// import data from "../data"
 
-const FormInactive = () => {
+
+const FormInactive = ({data,isData}) => {
   const [active, inactive] = useState(true);
-
+ 
   const toggleForm = ()=>{
      inactive(false);
   }
@@ -10,6 +12,26 @@ const FormInactive = () => {
   const closeForm =(e)=>{
      e.preventDefault();
      inactive(true)
+  }
+
+  const [title,isTitle] = useState("");
+  const [note,isNote] = useState("");
+  
+  const addtitle = (e)=>{
+  isTitle(e.target.value);
+  }
+
+  const addNote = (e)=>{
+    isNote(e.target.value);
+  }
+  
+  const logNote = (e)=>{
+    e.preventDefault()
+    const singleNoteAdd = {id:data.length + 1,title,note};
+    isTitle("");
+    isNote('');
+    isData([...data,singleNoteAdd]);
+    console.log(data)
   }
 
   return <> {active ? <div className="form-container inactive-form" >
@@ -30,15 +52,20 @@ const FormInactive = () => {
         </div>
       </div>
     </form>
-  </div> :
+  </div> 
+  
+  :
+
+
     <div className="form-container active-form">
       <form>
-        <input type="text" className="note-title" placeholder="Title" />
+        <input type="text" className="note-title" placeholder="Title" value={title} onChange={addtitle} />
         <input
           id="note-text"
           className="note-text"
           type="text"
           placeholder="Take a note..."
+          value={note} onChange={addNote}
         />
         <div className="form-actions" style={{    display: "flex",
     justifyContent: "space-between",
@@ -93,7 +120,7 @@ const FormInactive = () => {
               <span className="tooltip-text">Redo</span>
             </div>
           </div>
-          <button className="close-btn" onClick={closeForm}>Close</button>
+          <button className="close-btn" onClick={logNote}>Close</button>
         </div>
       </form>
     </div>}
