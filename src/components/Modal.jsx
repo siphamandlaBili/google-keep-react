@@ -1,19 +1,64 @@
-const Modal =({active, inactive,data,nots,isData,note,isNote,title,isTitle})=>{
+import { useState } from "react";
 
+const Modal =({active, inactive,clickedNote,data,nots,isData,note,isNote,title,isTitle,isClickedNote})=>{
 
+  const [updateTitle,setUpdateTitle] = useState("");
+  const [updateNote,setUpdateNote] = useState("");
 
-    return  <>{active?null : <div className="modal">
+  const editNote =(e)=>{
+    setUpdateNote(e.target.value)
+  }
+  const editTitle = (e)=>{
+    setUpdateTitle(e.target.value)
+    
+    
+  }
+const closeModal =(e)=>{
+  e.preventDefault();
+  if(updateTitle !=="" && updateNote !=="" ){
+    const newArr = data.map((el)=>{
+      if(el.id == nots.id){
+        nots.title = updateTitle
+        nots.note = updateNote
+      }
+    })
+  }
+
+  if(updateTitle ==""){
+    const newArr = data.map((el)=>{
+      if(el.id == nots.id){
+        nots.title = nots.title
+        nots.note = updateNote
+      }
+    })
+  }
+
+  if(updateNote ==""){
+    const newArr = data.map((el)=>{
+      if(el.id == nots.id){
+        nots.note = nots.note
+        nots.title = updateTitle
+      }
+    })
+  }
+  
+  isClickedNote(false)
+ 
+}
+
+    return  <>{clickedNote?<div className="modal">
     <div className="modal-content">
+     
       <div className="form-container">
         <form>
-        <input type="text" className="note-title" placeholder="Title" defaultValue={nots.title} value={title}/>
+        <input type="text" className="note-title" placeholder={nots.title} value={updateTitle} onChange={editTitle}/>
         <input
           id="note-text"
           className="note-text"
           type="text"
-          placeholder="Take a note..."
-          defaultValue={nots.note}
-          value={note}
+          placeholder={nots.note}
+          onChange={editNote}
+          value={updateNote}
         />
           <div className="form-actions" style={{    display: "flex",
     justifyContent: "space-between",
@@ -68,12 +113,12 @@ const Modal =({active, inactive,data,nots,isData,note,isNote,title,isTitle})=>{
                 <span className="tooltip-text">Redo</span>
               </div>
             </div>
-            <button className="close-btn">Close</button>
+            <button className="close-btn" onClick={closeModal}>Close</button>
           </div>
         </form>
       </div>
     </div>
-  </div>}</>
+  </div>:null}</>
 }
 
 export default Modal;

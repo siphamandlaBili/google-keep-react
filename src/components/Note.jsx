@@ -1,11 +1,12 @@
 import Modal from "./Modal";
 import { useState } from "react";
-const Note = ({ nots, data, title, isTitle, isNote, isData, inactive }) => {
+const Note = ({note, nots, data, title, isTitle, isNote, isData, inactive }) => {
     const [clickedNote, isClickedNote] = useState(false);
-    const [selected, setSelected] = useState(null);
+    // const [selected, setSelected] = useState(null);
 
     const viewModal = () => {
         isClickedNote(true)
+        console.log(clickedNote)
     }
 
     const removeItem = (id) => {
@@ -47,7 +48,7 @@ const Note = ({ nots, data, title, isTitle, isNote, isData, inactive }) => {
                 <span className="tooltip-text">edit</span>
             </div>
         </div>
-        {clickedNote ? <Modal nots={nots} data={data} isTitle={isTitle} isNote={isNote} isData={isData} inactive={inactive} /> : null}
+        {clickedNote ? <Modal nots={nots} data={data} clickedNote={clickedNote} isTitle={isTitle} isNote={isNote} isData={isData} note={note} isClickedNote={isClickedNote} inactive={inactive} title={title} /> : null}
     </div>
 }
 

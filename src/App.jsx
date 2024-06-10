@@ -5,7 +5,7 @@ import FormInactive from './components/FormInactive';
 import Modal from './components/Modal';
 import Notes from './components/Notes';
 import notes from './data';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 
 
@@ -16,6 +16,20 @@ function App() {
  const [title,isTitle] = useState("");
  const [note,isNote] = useState("");
  const [active, inactive] = useState(true);
+
+ 
+
+ 
+ 
+//  useEffect(() => {
+
+//    localStorage.setItem('amazing', JSON.stringify(data));
+   
+//    console.log(storedData)
+   
+//   },[data]);
+
+  const storedData = localStorage.getItem('amazing');
   return (
     <>
       <Navbar/>

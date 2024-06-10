@@ -1,13 +1,13 @@
 import Note from "./Note";
 import Modal from "./Modal";
 
-const Notes =({data,isTitle,isNote,isData,inactive})=>{
+const Notes =({data,isTitle,isNote,isData,inactive,title})=>{
 
 
 
 const submittedNotes = data.map((note,id)=>{
     return <div key={id}>
-    <Note  nots={note} data={data} isTitle={isTitle} isNote={isNote} isData={isData} inactive={inactive}/>
+    <Note  nots={note} data={data} isTitle={isTitle} title={title} isNote={isNote} isData={isData} inactive={inactive}/>
     
     </div>
 })

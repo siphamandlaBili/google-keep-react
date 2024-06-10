@@ -1,24 +1,37 @@
+import { useState } from "react";
+
+
 const Sidebar =()=>{
-    return <div className="sidebar">
+  const [hoverState,setHoverState]=useState(true);
+
+  const HoverStatesOpen = ()=>{
+    setHoverState(false)
+  }
+
+  const HoverStatesClose = ()=>{
+    setHoverState(true)
+  }
+
+    return <div className={hoverState?"sidebarHov":"sidebar"} onMouseEnter={HoverStatesOpen} onMouseLeave={HoverStatesClose}>
     <div className="sidebar-item">
       <span className="material-icons hover active">lightbulb</span>
-      <span className="sidebar-text">Notes</span>
+      {hoverState?"":<span className="sidebar-text">Notes</span>}
     </div>
     <div className="sidebar-item">
       <span className="material-icons hover">notifications</span>
-      <span className="sidebar-text">Reminders</span>
+      {hoverState?"":<span className="sidebar-text">Reminders</span>}
     </div>
     <div className="sidebar-item">
       <span className="material-icons hover">edit</span>
-      <span className="sidebar-text">Edit Labels</span>
+      {hoverState?"":<span className="sidebar-text">Edit Labels</span>}
     </div>
     <div className="sidebar-item">
       <span className="material-icons hover">archive</span>
-      <span className="sidebar-text">Archive</span>
+      {hoverState?"":<span className="sidebar-text">Archive</span>}
     </div>
     <div className="sidebar-item">
       <span className="material-icons hover">delete</span>
-      <span className="sidebar-text">Trash</span>
+      {hoverState?"":<span className="sidebar-text">Trash</span>}
     </div>
   </div>
 }
