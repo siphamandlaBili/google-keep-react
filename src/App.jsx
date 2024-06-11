@@ -17,17 +17,7 @@ function App() {
  const [note,isNote] = useState("");
  const [active, inactive] = useState(true);
 
- 
 
- 
- 
-//  useEffect(() => {
-
-//    localStorage.setItem('amazing', JSON.stringify(data));
-   
-//    console.log(storedData)
-   
-//   },[data]);
 
   const storedData = localStorage.getItem('amazing');
   return (
